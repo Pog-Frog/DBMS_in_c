@@ -37,7 +37,7 @@ void close_input_buffer(InputBuffer *input_buffer);
 CommandResult do_command(InputBuffer* input_buffer);
 PrepareResult prepare_statement(InputBuffer* input_buffer, Statement* statement);
 CommandResult do_command(InputBuffer* input_buffer);
-void execute_statement(InputBuffer* input_buffer, Statement* statement);
+void execute_statement(Statement* statement);
 
 
 int main(void) {
@@ -70,7 +70,7 @@ int main(void) {
             continue;
         }
 
-        execute_statement(input_buffer, &statement);
+        execute_statement(&statement);
 
         printf("\nEXECUTED\n");
     }
@@ -133,7 +133,7 @@ PrepareResult prepare_statement(InputBuffer* input_buffer, Statement* statement)
     return PREPARE_UNRECOGNIZED_STATEMENT;
 }
 
-void execute_statement(InputBuffer* input_buffer, Statement* statement) {
+void execute_statement(Statement* statement) {
     switch (statement->type)
     {
         case (STATEMENT_INSERT):
