@@ -225,6 +225,9 @@ void deserialize_row(void* source, Row* destination) {
     memcpy(&(destination->id), source + ID_OFFSET, ID_SIZE);
     memcpy(destination->username, source + USERNAME_OFFSET, USERNAME_SIZE);
     memcpy(destination->email, source + EMAIL_OFFSET, EMAIL_SIZE);
+
+    destination->username[USERNAME_SIZE - 1] = '\0';
+    destination->email[EMAIL_SIZE - 1] = '\0';
 }
 
 
