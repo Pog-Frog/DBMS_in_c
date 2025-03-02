@@ -9,7 +9,14 @@ typedef struct {
     char email[COLUMN_EMAIL_SIZE + 1];
 } Row;
 
+typedef struct 
+{
+    int file_descriptor;
+    int file_length;
+    void* pages[TABLE_MAX_PAGES];
+} Pager;
+
 typedef struct {
     int num_rows;
-    void* pages[TABLE_MAX_PAGES];
+    Pager* pager;
 } Table;
